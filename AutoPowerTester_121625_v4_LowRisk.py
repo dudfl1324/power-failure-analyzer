@@ -421,7 +421,7 @@ def _run_pseudo_measurement(
         try:
             prob = float(PSEUDO_SUB_PBA_FAIL_PROB)
         except Exception:
-                prob = 0.0
+            prob = 0.0
         prob = max(0.0, min(1.0, prob))
 
         if random.random() < prob:

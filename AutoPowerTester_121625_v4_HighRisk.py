@@ -7,7 +7,7 @@ import threading
 import time
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple
 
 import pandas as pd
 import pyvisa
@@ -421,7 +421,7 @@ def _run_pseudo_measurement(
         try:
             prob = float(PSEUDO_SUB_PBA_FAIL_PROB)
         except Exception:
-                prob = 0.0
+            prob = 0.0
         prob = max(0.0, min(1.0, prob))
 
         if random.random() < prob:
@@ -1090,8 +1090,8 @@ class QueueMessageContext:
     progress_var: tk.StringVar
     progress_bar: ttk.Progressbar
     status_label: tk.Label
-    finish_job_ui: Any
-    panel_frames: List
+    finish_job_ui: Callable[[], None]
+    panel_frames: List[Optional[ttk.LabelFrame]]
     prompt_response_queue: queue.Queue
 
 
